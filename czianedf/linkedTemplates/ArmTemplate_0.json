@@ -605,7 +605,8 @@
 								"referenceName": "CustomersTable",
 								"type": "DatasetReference",
 								"parameters": {}
-							}
+							},
+							"firstRowOnly": false
 						}
 					},
 					{
@@ -646,7 +647,7 @@
 												{
 													"name": "customer_id",
 													"value": {
-														"value": "@item()",
+														"value": "@item().id",
 														"type": "Expression"
 													}
 												}
