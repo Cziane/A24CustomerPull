@@ -1,0 +1,26 @@
+{
+	"name": "FileList",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "StorageAccountLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "list_files.json",
+				"container": "main"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"file_name": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
