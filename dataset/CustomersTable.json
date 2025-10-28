@@ -1,5 +1,5 @@
 {
-	"name": "ProductsSQL",
+	"name": "CustomersTable",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabaseLS",
@@ -28,7 +28,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Products"
+			"table": "customers"
 		}
 	}
 }

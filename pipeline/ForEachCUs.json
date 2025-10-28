@@ -1,10 +1,9 @@
 {
-	"name": "DynamiCopyCSVToSQL",
+	"name": "ForEachCUs",
 	"properties": {
-		"description": "Copy multiple csv files to SQL using a json index of files",
 		"activities": [
 			{
-				"name": "LookingForFileNames",
+				"name": "CustomerLU",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -17,43 +16,37 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "JsonSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "JsonReadSettings"
-						}
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "FilesList",
+						"referenceName": "CustomersTable",
 						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
+					}
 				}
 			},
 			{
-				"name": "FilesIn",
+				"name": "ForEach1",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "LookingForFileNames",
+						"activity": "CustomerLU",
 						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LookingForFileNames').output.value",
+						"value": "@activity('CustomerLU').output.value",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "CopyCsVToSQL",
+							"name": "CopyProductCSVToSQL",
+							"description": "Copy a product from csv to sql product with cutomer ID",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -142,7 +135,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"file_name": {
-											"value": "@item().file_name",
+											"value": "@concat(item().id, '.csv')",
 											"type": "Expression"
 										}
 									}
@@ -159,6 +152,11 @@
 				}
 			}
 		],
+		"variables": {
+			"mapping": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }

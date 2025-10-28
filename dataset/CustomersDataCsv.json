@@ -1,25 +1,16 @@
 {
-	"name": "ProductsCsv",
+	"name": "CustomersDataCsv",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "StorageAccountLS",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"file_name": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": {
-					"value": "@dataset().file_name",
-					"type": "Expression"
-				},
-				"folderPath": "cutomers",
+				"fileName": "client_data.csv",
 				"container": "main"
 			},
 			"columnDelimiter": ",",
@@ -33,11 +24,15 @@
 				"type": "String"
 			},
 			{
-				"name": "product",
+				"name": "first_name",
 				"type": "String"
 			},
 			{
-				"name": "quantity",
+				"name": "last_name",
+				"type": "String"
+			},
+			{
+				"name": "email",
 				"type": "String"
 			}
 		]
