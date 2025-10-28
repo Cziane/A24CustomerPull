@@ -60,6 +60,12 @@
 							"typeProperties": {
 								"source": {
 									"type": "DelimitedTextSource",
+									"additionalColumns": [
+										{
+											"name": "customer_id",
+											"value": "@item()"
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
@@ -117,6 +123,16 @@
 											},
 											"sink": {
 												"name": "quantity",
+												"type": "Int32",
+												"physicalType": "int"
+											}
+										},
+										{
+											"source": {
+												"name": "customer_id"
+											},
+											"sink": {
+												"name": "customer_id",
 												"type": "Int32",
 												"physicalType": "int"
 											}
