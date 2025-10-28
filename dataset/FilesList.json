@@ -1,5 +1,5 @@
 {
-	"name": "FileList",
+	"name": "FilesList",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "StorageAccountLS",
