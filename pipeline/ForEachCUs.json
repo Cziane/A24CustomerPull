@@ -23,7 +23,8 @@
 					"dataset": {
 						"referenceName": "CustomersTable",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -63,7 +64,10 @@
 									"additionalColumns": [
 										{
 											"name": "customer_id",
-											"value": "@item()"
+											"value": {
+												"value": "@item().id",
+												"type": "Expression"
+											}
 										}
 									],
 									"storeSettings": {
